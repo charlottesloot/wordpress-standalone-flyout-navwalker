@@ -1,0 +1,332 @@
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+
+:root{
+    --white: #fff;
+    --offwhite: #FAFAFA;
+    --accent: #41FDD4;
+    --semiblack: #233D4D;
+    --black: #011627;
+
+    --spacer: 10px;
+    --border-base: 20px;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+
+    font-family: Inter, sans-serif;
+}
+
+
+
+/*************** styles for hamburger button + animation ***************/
+.nav--hamburger {
+    background: transparent;
+    border: none;
+}
+svg {
+	width: 70px;
+}
+
+#top-line,
+#bottom-line,
+#middle-line {
+	transform-box: fill-box;
+	transform-origin: center;
+}
+
+.nav--hamburger.open svg {
+	#top-line {
+		animation: down-rotate 0.6s ease-out both;
+	}
+	#bottom-line {
+		animation: up-rotate 0.6s ease-out both;
+	}
+	#middle-line {
+		animation: hide 0.6s ease-out forwards;
+	}
+}
+
+@keyframes up-rotate {
+	0% {
+		animation-timing-function: cubic-bezier(0.16, -0.88, 0.97, 0.53);
+		transform: translateY(0px);
+	}
+	30% {
+		transform-origin: center;
+		animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+		transform: translateY(-10px);
+	}
+	100% {
+		transform-origin: center;
+		transform: translateY(-10px) rotate(45deg) scale(0.9);
+	}
+}
+
+@keyframes down-rotate {
+	0% {
+		animation-timing-function: cubic-bezier(0.16, -0.88, 0.97, 0.53);
+		transform: translateY(0px);
+	}
+	30% {
+		transform-origin: center;
+		animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+		transform: translateY(10px);
+	}
+	100% {
+		transform-origin: center;
+		transform: translateY(10px) rotate(-45deg) scale(0.9);
+	}
+}
+
+@keyframes hide {
+	29% {
+		opacity: 1;
+	}
+	30% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+/*************** END styles for hamburger button + animation ***************/
+
+
+
+/* ************** START navigation styles ************** */
+
+.nav--logo{ /* placeholder for logo */
+    width: 80px;
+    height: 40px;
+    background-color: black;
+}
+
+
+.main-site-nav-wrapper{  /* basic styles for the navigation */
+    margin-inline: auto;
+    width: 100%;
+    max-width: 992px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    overflow: hidden;
+    box-shadow: 0px 4px 15px 0px rgba(35, 61, 77, 0.10);
+
+
+    transition: height 0.3s ease;
+}
+
+.main-site-nav{
+    height: 0;
+    transition: height 400ms ease;
+}
+
+.main-site-nav-wrapper.open{ /* (MOBILE) basic styles for the navigation when opened */
+    
+    height: 80dvh; 
+
+    background-color: var(--offwhite);
+    border-radius: 0 0 calc(var(--border-base) + var(--spacer)) calc(var(--border-base) + var(--spacer));
+
+    overflow-y: scroll;
+    overflow-x: initial;
+
+
+    /* fixed to top of screen */
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.main-site-nav-wrapper.open .main-site-nav{
+    height: initial;
+}
+
+
+.mobile-control{ /* (mobile) logo and close button */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+    position: sticky;
+    top: 0;
+}
+
+
+.main-site-nav-wrapper ul {
+    list-style: none;
+    margin: 0;
+}
+
+/* general link style */
+.main-site-nav-wrapper a {
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1.2em;
+    color: var(--black);
+}
+
+
+/* CTA button */
+.main-menu-cta{
+    position: sticky;
+    left: 0;
+    bottom: 0;
+
+    padding-inline: 0;
+    padding-top: calc(2 * var(--spacer));
+    padding-bottom: var(--spacer);
+    width: 100%;
+
+    background: linear-gradient(180deg, rgba(250, 250, 250, 0.69) 0%, #FAFAFA 42%);
+}
+.main-menu-cta li {
+    padding-left: var(--spacer);
+    padding-right: var(--spacer);
+}
+.main-menu-cta a {
+    /* General base style */
+    background-color: var(--black);
+    font-weight: 700;
+    color: var(--offwhite);
+    border-radius: var(--border-base);
+
+
+    /* mobile styles */
+    display: block;
+    padding: 15px 20px;
+    
+    max-width: 500px;
+    margin-inline: auto;
+    text-align: center;
+}
+/* end CTA button */
+
+.main-site-nav-wrapper.open .main-site-nav{
+    margin-top: 100px;
+}
+
+
+ul.main-menu-flyout{
+    padding-right: 20px;
+    margin-bottom: 30px;
+}
+.main-menu-flyout, .main-menu-flyout ul{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.sub-menu{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+
+.mobile-control .main-site-nav .main-menu-cta{
+    width: 100%;
+    max-width: 800px;
+}
+
+
+
+
+@media screen and (min-width: 992px) {
+    .nav--hamburger{ /* turn off the hamburger menu */
+        display: none;
+    }
+
+    .main-site-nav-wrapper{
+        background: var(--offwhite);
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        overflow: initial;
+
+        border-radius: calc(var(--border-base) + var(--spacer));
+    }
+    .main-site-nav {
+        height: initial;
+
+        display: flex;
+        flex-direction: row;
+    }
+    .main-menu-flyout{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: stretch;
+        
+    }
+    ul.main-menu-flyout{
+        margin-bottom: 0;
+    }
+    .main-menu-flyout > li {
+        display: flex;
+        align-items: center;
+
+        gap: 5px;
+        padding: 0;
+    }
+    .main-menu-flyout > li > a {
+        padding: 12px 25px;
+        border: 1px solid transparent
+    }
+    .main-menu-flyout > li > a:hover {
+        background: rgba(65, 253, 212, 0.20);
+        border: 1px solid var(--accent);
+        border-radius: 20px;
+    }
+
+    /* dropdown subnavigation */
+    .menu-item-has-children{
+        position: relative;
+    }
+    
+    ul.sub-menu{
+        --top: 40px;
+
+        display: block; /* turn off display flex */
+        position: absolute;
+        top: calc(100% + var(--spacer));
+        min-width: 150px;
+
+        margin-top: unset;
+        padding: calc(3 * (var(--spacer))) calc(2 * (var(--spacer)));
+
+        border-radius: var(--border-base);
+        background-color: var(--offwhite);
+        box-shadow: 0px 4px 15px 0px rgba(35, 61, 77, 0.10);
+        border: 1px solid var(--accent);
+
+        width: max-content;
+        max-width: 230px;
+    }
+    .sub-menu li:not(:last-child) {
+        margin-bottom: 1em;
+    }
+
+    .main-menu-cta{
+        width: auto;
+        padding: 0;
+    }
+    .main-menu-cta a{
+        display: inline-block;
+    }
+}
