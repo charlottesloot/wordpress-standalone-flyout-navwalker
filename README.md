@@ -4,6 +4,15 @@ this navwalker is built as an extension of the wordpress core class [Walker_Nav_
 
 Ideal for developers who don't want to include the full package of Bootstrap (or other third parties).
 
+## The pre-made layout
+**please refer to the /examples folder if you want a visual idea of the navigation.**
+
+Note: It's not a 100% exact copy.
+
+![Desktop example](/examples/desktop_example.png)
+![Mobile example](/examples/mobile_example.png)
+
+
 ## Installation
 1. Declare a new menu in your `functions.php` for the general menu AND an extra for your main CTA button.:
 ```PHP
